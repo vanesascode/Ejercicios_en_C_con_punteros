@@ -43,9 +43,9 @@ void orderWords(int orderSelected, char words[MAX_WORDS][MAX_LENGTH]); // Ordena
 void selectConversion (int *conversionSelected); // Pide al usuario que elija un tipo de conversion.
 void cartesianToPolar(double x, double y, double *r, double *theta); // Convierte coordenadas cartesianas a polares.
 void polarToCartesian(double r, double theta, double *x, double *y); // Convierte coordenadas polares a cartesianas.
-int validateDecimals(char chain[MAX_LENGTH]);
-void readCoordenates(double *coordenate);
-void printResults(double x, double y, double r, double theta, int conversionSelected);
+int validateDecimals(char chain[MAX_LENGTH]); // Valida si una cadena contiene solo numeros (incluidos los decimales y negativos).
+void readCoordenates(double *coordenate); //Lee un numero decimal.
+void printResults(double x, double y, double r, double theta, int conversionSelected); // Imprime los resultados de las conversiones del ejercicio 4.
 
 
 int main(void) {
@@ -160,47 +160,47 @@ int main(void) {
 
         break; // Sale del case 3 del switch principal.
 
-        case 4:
-            int conversionSelected;
-            selectConversion(&conversionSelected);
+        case 4:  // Caso 4: Conversion de coordenadas
+            int conversionSelected; // Declara una variable para almacenar la opcion de conversion seleccionada
+            selectConversion(&conversionSelected); // Llama a la funcion para que el usuario seleccione el tipo de conversion.
 
-            double x, y, r, theta;
+            double x, y, r, theta; // Declara variables para las coordenadas cartesianas (x, y) y polares (r, theta)
 
-            switch (conversionSelected) {
+            switch (conversionSelected) { // Comienza un switch anidado basado en la opcion de conversion.
 
-                case 1:
+                case 1: // Caso 1: Conversion de coordenadas cartesianas a polares
                     printf("Ingresa la coordenada cartesiana x: ");
-                    readCoordenates(&x);
+                    readCoordenates(&x); // Lee la coordenada x ingresada por el usuario
                     printf("Ingresa la coordenada cartesiana y: ");
-                    readCoordenates(&y);
-                    cartesianToPolar(x, y, &r, &theta);
-                    printResults(x, y, r, theta, conversionSelected);
+                    readCoordenates(&y); // Lee la coordenada y ingresada por el usuario
+                    cartesianToPolar(x, y, &r, &theta); // Llama a la funcion para realizar la conversion de cartesianas a polares
+                    printResults(x, y, r, theta, conversionSelected); // Imprime los resultados de la conversion
                     break;
 
-                case 2:
+                case 2: // Caso 2: Conversion de coordenadas polares a cartesianas
                     printf("Ingresa la coordenada polar r: ");
-                    readCoordenates(&r);
+                    readCoordenates(&r); // Lee la coordenada r ingresada por el usuario.
                     printf("Ingresa la coordenada polar theta: ");
-                    readCoordenates(&theta);
-                    polarToCartesian(r, theta, &x, &y);
-                    printResults(x, y, r, theta, conversionSelected);
+                    readCoordenates(&theta); // Lee la coordenada theta ingresada por el usuario.
+                    polarToCartesian(r, theta, &x, &y); // Llama a la funcion para realizar la conversion de polares a cartesianas.
+                    printResults(x, y, r, theta, conversionSelected); // Imprime los resultados de la conversion
                     break;
 
-                case 3:
-                    printResults(x, y, r, theta, conversionSelected);
-                break;
-            }
+                case 3: // Caso 5: Salida del programa
+                    printf("Gracias por utilizar el programa. Hasta pronto.");
+                    break;
+            } // Cierra el switch anidado.
 
+            break; // Sale del caso 4 del switch principal.
+
+        case 5: // Caso 5: Salida del programa.
+            printf("Gracias por utilizar el programa. Hasta pronto."); // Imprime un mensaje de despedida.
             break;
 
-        case 5:
-            printf("Gracias por utilizar el programa. Hasta pronto.");
-            break;
-
-        default:
+        default: // Caso por defecto: Manejo de errores
             printf("Lo siento, ha habido un error. Fin del programa.\n");
-         }
-    return 0;
+         } // Cierra el switch principal.
+    return 0; // Retorna 0 para indicar que el programa finalizó correctamente.
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -707,12 +707,6 @@ void printResults(double x, double y, double r, double theta, int conversionSele
             printf("Coordenadas cartesianas: x = %.2f, y = %.2f\n", x, y);
         // Se imprime el valor de 'x' y 'y' (coordenadas cartesianas)
         // con dos decimales de precision.
-        break;
-
-        case 3:
-            // Caso 3: El usuario eligio salir del programa.
-            printf("Gracias por utilizar el programa. Hasta pronto.\n");
-        // Se imprime un mensaje de despedida.
         break;
 
         default:
